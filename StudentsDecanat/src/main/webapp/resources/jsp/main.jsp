@@ -8,9 +8,9 @@
 <h3>Суммарный балл</h3>
 
 <form action="/total" method="get">
-    <label>Имя</label><input type="text" name="name" required>
-    <label>Фамилия</label><input type="text" name="surname" required>
-    <label>Отчество</label><input type="text" name="thirdname" required>
+    <label>Имя</label><input type="text" name="name">
+    <label>Фамилия</label><input type="text" name="surname">
+    <label>Отчество</label><input type="text" name="thirdName">
     <input type="submit" value="Get">
 </form>
 <h5><font color="red">${error1}</font></h5>
@@ -20,9 +20,9 @@
 <h3>Средний балл</h3>
 
 <form action="/average" method="get">
-    <label>Имя</label><input type="text" name="name" required>
-    <label>Фамилия</label><input type="text" name="surname" required>
-    <label>Отчество</label><input type="text" name="thirdname" required>
+    <label>Имя</label><input type="text" name="name">
+    <label>Фамилия</label><input type="text" name="surname">
+    <label>Отчество</label><input type="text" name="thirdName">
     <input type="submit" value="Get">
 </form>
 <h5><font color="red">${error2}</font></h5>
@@ -34,9 +34,9 @@
 <h3>Баллы за конкретный предмет</h3>
 
 <form action="/current-subject" method="get">
-    <label>Имя</label><input type="text" name="name" required>
-    <label>Фамилия</label><input type="text" name="surname" required>
-    <label>Отчество</label><input type="text" name="thirdname" required>
+    <label>Имя</label><input type="text" name="name">
+    <label>Фамилия</label><input type="text" name="surname">
+    <label>Отчество</label><input type="text" name="thirdName">
     <!--<label>Предмет</label><input type="text" name="subject" required>-->
     <label>Предмет</label>
     <select name="subject">

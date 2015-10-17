@@ -17,6 +17,9 @@ public class Scores {
     @Column(name = "id")
     private Integer id;
 
+    @Transient
+    private String subject;
+
 
     @Column(name = "subject_type")
     @Enumerated(EnumType.STRING)
@@ -71,4 +74,11 @@ public class Scores {
         this.studentId = studentId;
     }
 
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
 }

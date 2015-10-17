@@ -1,6 +1,8 @@
 package com.pliskin.repository.impl;
 
 import com.pliskin.repository.StudentsRepository;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
+import org.springframework.dao.InvalidDataAccessResourceUsageException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +27,10 @@ public class StudentsRepositoryImpl implements StudentsRepository {
         query.setParameter(1, name);
         query.setParameter(2, surname);
         query.setParameter(3, thirdname);
-        return Integer.parseInt(query.getSingleResult().toString());
+        try {
+            return Integer.parseInt(query.getSingleResult().toString());
+        } catch (InvalidDataAccessResourceUsageException e) {
+            return null;
+        }
     }
 }

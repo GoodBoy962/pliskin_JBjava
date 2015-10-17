@@ -36,13 +36,11 @@ public class ScoresRepositoryImpl implements ScoresRepository {
     public BigDecimal getAverage(Integer id) {
         Query query = entityManager.createNativeQuery("SELECT AVG(score) FROM scores WHERE student_id=?");
         query.setParameter(1, id);
-        BigDecimal bigDecimal;
         try {
-            bigDecimal = (BigDecimal) query.getSingleResult();
+            return (BigDecimal) query.getSingleResult();
         } catch (NoResultException e) {
-            bigDecimal = null;
+            return null;
         }
-        return bigDecimal;
     }
 
     @Override

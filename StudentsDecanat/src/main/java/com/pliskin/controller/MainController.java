@@ -1,11 +1,18 @@
 package com.pliskin.controller;
 
+import com.pliskin.model.Scores;
+import com.pliskin.model.Student;
 import com.pliskin.service.AddUsersRepository;
 import com.pliskin.service.StudentService;
+import com.pliskin.util.FormValodator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
@@ -18,36 +25,36 @@ public class MainController {
     @Autowired
     StudentService studentService;
 
+    FormValodator validator = new FormValodator();
+
     @RequestMapping("/main")
     public String getMainPage() {
         return "main";
     }
 
-    @RequestMapping("/total")
+    @RequestMapping(value = "/total", method = RequestMethod.GET)
     public String getTotal(
-            @RequestParam String name,
-            @RequestParam String surname,
-            @RequestParam String thirdname,
+            @ModelAttribute Student student, BindingResult result,
             Model model
     ) {
-        Integer result1 = studentService.getTotal(name, surname, thirdname);
+        validator.validate(student, result);
+        Integer result1 = studentService.getTotal(student.getName(), student.getSurname(), student.getThirdName());
         if (result1 == null) {
             model.addAttribute("error1", "Нет  такого студента");
             return "main";
         } else {
-            model.addAttribute("result1", studentService.getTotal(name, surname, thirdname));
+            model.addAttribute("result1", result1);
             return "total";
         }
     }
 
-    @RequestMapping("/average")
+    @RequestMapping(value = "/average", method = RequestMethod.GET)
     public String getAverage(
-            @RequestParam String name,
-            @RequestParam String surname,
-            @RequestParam String thirdname,
+            @ModelAttribute Student student, BindingResult result,
             Model model
     ) {
-        BigDecimal result2 = studentService.getAverage(name, surname, thirdname);
+        validator.validate(student, result);
+        BigDecimal result2 = studentService.getAverage(student.getName(), student.getSurname(), student.getThirdName());
         if (result2 == null) {
             model.addAttribute("error2", "Нет  такого студента");
             return "main";
@@ -58,15 +65,14 @@ public class MainController {
         }
     }
 
-    @RequestMapping("/current-subject")
+    @RequestMapping(value = "/current-subject", method = RequestMethod.GET)
     public String getCurrentSubjectPoints(
-            @RequestParam String name,
-            @RequestParam String surname,
-            @RequestParam String thirdname,
-            @RequestParam String subject,
+            @ModelAttribute Student student, BindingResult result,
+            @ModelAttribute Scores scores,
             Model model
     ) {
-        Integer result3 = studentService.getCurrentSubjectPoints(name, surname, thirdname, subject);
+        validator.validate(student, result);
+        Integer result3 = studentService.getCurrentSubjectPoints(student.getName(), student.getSurname(), student.getThirdName(), scores.getSubject());
         if (result3 == null) {
             model.addAttribute("error3", "Нет  такого студента или у этого студента нет такого предмета");
             return "main";
