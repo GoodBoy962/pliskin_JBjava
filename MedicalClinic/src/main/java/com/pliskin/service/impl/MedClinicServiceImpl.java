@@ -1,0 +1,136 @@
+package com.pliskin.service.impl;
+
+import com.pliskin.model.*;
+import com.pliskin.model.enums.PeopleType;
+import com.pliskin.repository.*;
+import com.pliskin.service.MedClinicService;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.xml.crypto.Data;
+import java.util.ArrayList;
+import java.util.Date;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+/**
+ * Created by aleksandrpliskin on 18.10.15.
+ */
+@Transactional(readOnly = true)
+@Service
+//@Transactional(readOnly = true, isolation = Isolation.READ_COMMITTED)
+public class MedClinicServiceImpl implements MedClinicService {
+    /*
+        @Qualifier("medClinicRepository")
+        @Autowired
+        MedClinicRepository medClinicRepository;
+*/
+    @Autowired
+    private OfficeRepository officeRepository;
+/*
+        @Qualifier("peopleRepository")
+        @Autowired
+        PeopleRepository peopleRepository;
+
+        @Autowired
+        JurInfoRepository jurInfoRepository;
+
+        @Autowired
+        OperationSupplierRepository operationSupplierRepository;
+    */
+
+    @Autowired
+    private StuffDataRepository stuffDataRepository;
+
+    @Autowired
+    private PatientDataRepository patientDataRepository;
+
+    @Autowired
+    private MedClinicRepository medClinicRepository;
+
+    @Override
+    public BigDecimal getAverageSalaryOfEmployeesOfCurrentMedClinic(String name) {
+        BigDecimal averageSalary = stuffDataRepository.findByMedClinic(name);
+        return averageSalary;
+    }
+
+    @Override
+    public Integer getSalaryOfCurrentEmployee(String name, String fio) {
+        return stuffDataRepository.findByMedClinicAndFio(name, fio);
+    }
+
+    @Override
+    public BigDecimal getAverageChequeInMedClinic(String name) {
+        return patientDataRepository.findByMedClinic(name);
+    }
+
+    @Override
+    public BigDecimal getAverageChequeInCurrentOffice(String name, String city, String street) {
+        return patientDataRepository.findByMedClinicAndOffice(name, city, street);
+    }
+
+    @Override
+    public Boolean getInfoAboutSendingGoods(String providerName, String name, String city, String street) {
+        return null;
+    }
+
+    @Override
+    public String getTheMostProfitableCompany() {
+        return medClinicRepository.findTheBestMedClinic();
+    }
+
+    @Override
+    public Integer getTheMostProfitableOffice() {
+        return officeRepository.getTheMostProfitableOffice();
+    }
+
+    @Override
+    public String getOfficeStreet(Integer id) {
+        return officeRepository.getStreet(id);
+    }
+
+    @Override
+    public String getOfficeCity(Integer id) {
+        return officeRepository.getCity(id);
+    }
+
+    @Override
+    public String getOfficeMedClinic(Integer id) {
+        return officeRepository.getMedClinicId(id);
+    }
+
+    @Override
+    public List<String> getMedClinicNames() {
+        return medClinicRepository.getMedClinicNames();
+    }
+
+    @Override
+    public List<String> getStuffFioOfCurrentMedClinic(String name) {
+        return stuffDataRepository.getByMedClinicFios(name);
+    }
+
+    @Override
+    public Date getEmplymentDate(String name, String fio) {
+        return stuffDataRepository.getEmploymentDate(name, fio);
+    }
+
+    @Override
+    public Date getDismissalDate(String name, String fio) {
+        return stuffDataRepository.getDismissalDate(name, fio);
+    }
+
+    @Override
+    public List<String> getMedClinicCities(String name) {
+        return officeRepository.getAllCities(name);
+    }
+
+    @Override
+    public List<String> getStreetsOfOfficeInCityOfMedClinic(String name, String city) {
+        return officeRepository.getAllStreetInCityOfMedClinic(name, city);
+    }
+}

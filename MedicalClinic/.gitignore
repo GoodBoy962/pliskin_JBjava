@@ -1,0 +1,11 @@
+.idea/
+target/
+out/
+classes/
+lib/
+*.properties
+*.iml
+/.idea
+.idea
+idea/
+.DS_Store
