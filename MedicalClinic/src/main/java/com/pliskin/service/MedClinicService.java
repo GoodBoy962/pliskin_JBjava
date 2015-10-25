@@ -1,11 +1,5 @@
 package com.pliskin.service;
 
-import com.pliskin.model.MedClinic;
-import com.pliskin.model.Office;
-import com.pliskin.model.People;
-import com.pliskin.model.Provider;
-
-import javax.xml.crypto.Data;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -46,5 +40,9 @@ public interface MedClinicService {
     List<String> getMedClinicCities(String name);
 
     List<String> getStreetsOfOfficeInCityOfMedClinic(String name, String city);
+
+    List<String> getProvidersOffice(String name, String city, String street);
+
+    List<String> goodsInfo(String name, String city, String street, String providerName);
 
 }

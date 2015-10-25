@@ -1,7 +1,5 @@
 package com.pliskin.repository;
 
-import org.springframework.stereotype.Repository;
-
 import java.math.BigDecimal;
 
 /**

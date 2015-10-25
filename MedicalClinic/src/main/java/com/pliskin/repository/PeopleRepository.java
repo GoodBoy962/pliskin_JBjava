@@ -4,10 +4,8 @@ import com.pliskin.model.Office;
 import com.pliskin.model.People;
 import com.pliskin.model.enums.PeopleType;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.time.Period;
 import java.util.List;
 
 /**

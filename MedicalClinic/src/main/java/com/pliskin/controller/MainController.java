@@ -2,11 +2,13 @@ package com.pliskin.controller;
 
 import com.pliskin.model.*;
 import com.pliskin.service.MedClinicService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -101,11 +103,41 @@ public class MainController {
             @ModelAttribute MedClinic medClinic,
             Model model
     ) {
-        model.addAttribute("infoAboutSendingGoods", medClinicService.getInfoAboutSendingGoods(provider.getName(), medClinic.getName(), office.getCity(), office.getStreet()));
+        if (medClinic.getName() == null) {
+            model.addAttribute("medClinicNames", medClinicService.getMedClinicNames());
+        } else if (office.getCity() == null) {
+            model.addAttribute("medClinicName", medClinic.getName());
+            model.addAttribute("cities", medClinicService.getMedClinicCities(medClinic.getName()));
+        } else if (office.getStreet() == null) {
+            model.addAttribute("medClinicName", medClinic.getName());
+            model.addAttribute("streets", medClinicService.getStreetsOfOfficeInCityOfMedClinic(medClinic.getName(), office.getCity()));
+            model.addAttribute("city", office.getCity());
+        } else {
+            model.addAttribute("medClinicName", medClinic.getName());
+            model.addAttribute("providers", medClinicService.getProvidersOffice(medClinic.getName(), office.getCity(), office.getStreet()));
+            model.addAttribute("city", office.getCity());
+            System.out.println((office.getCity()));
+            model.addAttribute("street", office.getStreet());
+        }
+        model.addAttribute("medClinic", medClinic);
         return "goods-info";
     }
 
+
+    @RequestMapping("/goods_info/result")
+    public String getInfoAboutGoods(
+            @ModelAttribute MedClinic medClinic,
+            @ModelAttribute Office office,
+            @RequestParam String provider,
+            Model model) {
+        model.addAttribute("result", medClinicService.goodsInfo(medClinic.getName(), office.getCity(), office.getStreet(), provider));
+        return "goods-info-result";
+
+    }
+
+
     @RequestMapping("/profitability")
+
     public String getProfitPage() {
         return "profitability";
     }

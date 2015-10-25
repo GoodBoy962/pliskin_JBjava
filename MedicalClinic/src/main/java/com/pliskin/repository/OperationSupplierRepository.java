@@ -1,13 +1,12 @@
 package com.pliskin.repository;
 
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
 /**
  * Created by aleksandrpliskin on 18.10.15.
  */
-@Repository
 public interface OperationSupplierRepository {
 
-    Boolean wasSomethindSend(String providerName, String name, String city, String street);
+    List<String> whenWasSend(String providerName, String name, String city, String street);
 
 }

@@ -1,14 +1,5 @@
 package com.pliskin.repository;
 
-import com.pliskin.model.MedClinic;
-import com.pliskin.model.Office;
-import com.pliskin.model.StuffData;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
-
-import javax.xml.crypto.Data;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;

@@ -1,21 +1,13 @@
 package com.pliskin.service.impl;
 
-import com.pliskin.model.*;
-import com.pliskin.model.enums.PeopleType;
 import com.pliskin.repository.*;
 import com.pliskin.service.MedClinicService;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.xml.crypto.Data;
-import java.util.ArrayList;
-import java.util.Date;
-
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,29 +15,19 @@ import java.util.List;
  */
 @Transactional(readOnly = true)
 @Service
-//@Transactional(readOnly = true, isolation = Isolation.READ_COMMITTED)
 public class MedClinicServiceImpl implements MedClinicService {
-    /*
-        @Qualifier("medClinicRepository")
-        @Autowired
-        MedClinicRepository medClinicRepository;
-*/
+
     @Autowired
     private OfficeRepository officeRepository;
-/*
-        @Qualifier("peopleRepository")
-        @Autowired
-        PeopleRepository peopleRepository;
 
-        @Autowired
-        JurInfoRepository jurInfoRepository;
-
-        @Autowired
-        OperationSupplierRepository operationSupplierRepository;
-    */
+    @Autowired
+    OperationSupplierRepository operationSupplierRepository;
 
     @Autowired
     private StuffDataRepository stuffDataRepository;
+
+    @Autowired
+    private ProviderRepository providerRepository;
 
     @Autowired
     private PatientDataRepository patientDataRepository;
@@ -132,5 +114,15 @@ public class MedClinicServiceImpl implements MedClinicService {
     @Override
     public List<String> getStreetsOfOfficeInCityOfMedClinic(String name, String city) {
         return officeRepository.getAllStreetInCityOfMedClinic(name, city);
+    }
+
+    @Override
+    public List<String> getProvidersOffice(String name, String city, String street) {
+        return providerRepository.findByMedClinicOfficeStreetAndCity(name, city, street);
+    }
+
+    @Override
+    public List<String> goodsInfo(String name, String city, String street, String providerName) {
+        return operationSupplierRepository.whenWasSend(providerName, name, city, street);
     }
 }
