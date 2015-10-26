@@ -12,7 +12,7 @@
     <title></title>
 </head>
 <body>
-<c:if test="${result == null}">Ничего не было оправлено</c:if>
+<c:if test="${result == null}"><p>Ничего не было оправлено</p></c:if>
 <c:if test="${result != null}">
     <c:forEach var="date" items="${result}">
         <p>отправлено ${date}</p>

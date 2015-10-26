@@ -2,6 +2,7 @@ package com.pliskin.controller;
 
 import com.pliskin.model.*;
 import com.pliskin.service.MedClinicService;
+import com.pliskin.util.CreateModel;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -103,22 +104,7 @@ public class MainController {
             @ModelAttribute MedClinic medClinic,
             Model model
     ) {
-        if (medClinic.getName() == null) {
-            model.addAttribute("medClinicNames", medClinicService.getMedClinicNames());
-        } else if (office.getCity() == null) {
-            model.addAttribute("medClinicName", medClinic.getName());
-            model.addAttribute("cities", medClinicService.getMedClinicCities(medClinic.getName()));
-        } else if (office.getStreet() == null) {
-            model.addAttribute("medClinicName", medClinic.getName());
-            model.addAttribute("streets", medClinicService.getStreetsOfOfficeInCityOfMedClinic(medClinic.getName(), office.getCity()));
-            model.addAttribute("city", office.getCity());
-        } else {
-            model.addAttribute("medClinicName", medClinic.getName());
-            model.addAttribute("providers", medClinicService.getProvidersOffice(medClinic.getName(), office.getCity(), office.getStreet()));
-            model.addAttribute("city", office.getCity());
-            System.out.println((office.getCity()));
-            model.addAttribute("street", office.getStreet());
-        }
+        model = (new CreateModel()).createModel(model, provider, medClinic, office);
         model.addAttribute("medClinic", medClinic);
         return "goods-info";
     }

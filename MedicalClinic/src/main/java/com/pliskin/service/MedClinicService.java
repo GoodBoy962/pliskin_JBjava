@@ -17,8 +17,6 @@ public interface MedClinicService {
 
     BigDecimal getAverageChequeInCurrentOffice(String name, String city, String street);
 
-    Boolean getInfoAboutSendingGoods(String providerName, String name, String city, String street);
-
     String getTheMostProfitableCompany();
 
     Integer getTheMostProfitableOffice();

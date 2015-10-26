@@ -22,19 +22,19 @@ public class JurInfo {
     private String number;
 
     @Column(name = "unic_number_uuid", nullable = false)
-    private String unicNumberUUID;
+    private UUID unicNumberUUID;
 
-    public JurInfo(String sries, String number, String unicNumberUUID) {
+    public JurInfo(String sries, String number, UUID unicNumberUUID) {
         this.sries = sries;
         this.number = number;
         this.unicNumberUUID = unicNumberUUID;
     }
 
-    public String getUnicNumberUUID() {
+    public UUID getUnicNumberUUID() {
         return unicNumberUUID;
     }
 
-    public void setUnicNumberUUID(String unicNumberUUID) {
+    public void setUnicNumberUUID(UUID unicNumberUUID) {
         this.unicNumberUUID = unicNumberUUID;
     }
 

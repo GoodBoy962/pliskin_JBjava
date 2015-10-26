@@ -32,10 +32,6 @@ public class PatientDataRepositoryImpl implements PatientDataRepository {
         query.setParameter(1, name);
         query.setParameter(2, city);
         query.setParameter(3, street);
-        try {
-            return (BigDecimal) query.getSingleResult();
-        } catch (NullPointerException e) {
-            return null;
-        }
+        return (BigDecimal) query.getSingleResult();
     }
 }

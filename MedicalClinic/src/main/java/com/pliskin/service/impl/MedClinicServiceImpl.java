@@ -57,11 +57,6 @@ public class MedClinicServiceImpl implements MedClinicService {
     }
 
     @Override
-    public Boolean getInfoAboutSendingGoods(String providerName, String name, String city, String street) {
-        return null;
-    }
-
-    @Override
     public String getTheMostProfitableCompany() {
         return medClinicRepository.findTheBestMedClinic();
     }

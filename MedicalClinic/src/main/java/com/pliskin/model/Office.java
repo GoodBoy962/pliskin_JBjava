@@ -20,11 +20,6 @@ public class Office {
     @Column(name = "street")
     private String street;
 
-    /*
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "med_clinic_id", nullable = false)
-    private MedClinic medClinicId;
-    */
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "med_clinic_id", nullable = false)
     private MedClinic medClinic;
