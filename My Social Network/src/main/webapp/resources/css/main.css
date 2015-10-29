@@ -1,0 +1,22 @@
+header {
+    background-color: #985f0d;
+    color: darkseagreen;
+    height: 50px;
+    width: 100%;
+    padding-top: 15px;
+    position: absolute;
+    top: 0;
+}
+
+header a{
+    color: greenyellow;
+}
+
+header .userside {
+    text-align: right;
+    color-rendering: #FFFFFF;
+}
+
+.content {
+    margin-top: 70px;
+}
