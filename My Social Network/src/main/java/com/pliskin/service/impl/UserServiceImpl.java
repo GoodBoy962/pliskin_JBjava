@@ -15,7 +15,6 @@ import javax.transaction.Transactional;
 /**
  * Created by aleksandrpliskin on 29.10.15.
  */
-@Transactional
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -24,10 +23,16 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
 
     @Override
-    public void saveNewUser(UserRegistrationForm form) {
+    public boolean saveNewUser(UserRegistrationForm form) {
         System.out.println(form.getUsername());
         User user = UserRegistrationFormToUserTransformer.transform(form);
-        userRepository.save(user);
+        if (user != null) {
+            userRepository.save(user);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     @Secured("hasRole('ROLE_ADMIN')")

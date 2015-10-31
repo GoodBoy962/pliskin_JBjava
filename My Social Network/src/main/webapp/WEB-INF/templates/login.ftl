@@ -2,7 +2,7 @@
 <#macro m_body>
 
 <div class="col-md-4 col-md-offset-4">
-    <form action="/login/process" method="post">
+    <form class="form-signin" action="/login/process" method="post">
         <div class="form-group">
             <label for="exampleInputEmail1">Логин</label>
             <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Логин" name="username">
@@ -12,11 +12,13 @@
             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Пароль" name="password">
         </div>
         <#if error??>
-            <p>Неправильный логин или пароль</p>
+            <div class="alert alert-danger" role="alert"><p>Неправильный логин или пароль</p></div>
         </#if>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-default">Войти</button>
     </form>
 </div>
 
+
+
 </#macro>
-<@main title="Логин"/>
+<@main title="Логин" />

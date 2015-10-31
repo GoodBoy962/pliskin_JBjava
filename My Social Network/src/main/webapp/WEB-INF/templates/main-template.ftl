@@ -19,12 +19,13 @@
 
 </head>
 <body>
+<div class = "site-wrapper">
 <#include "header.ftl"/>
 
 <div class="content">
     <@m_body/>
 </div>
-
+</div>
 
 </body>
 </html>

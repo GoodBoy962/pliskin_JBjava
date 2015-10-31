@@ -2,15 +2,10 @@
 
 <#macro m_body>
 
-<div class="col-lg-6 col-lg-offset-3">
-    <textarea id="js-tweet-text" class="form-control" rows="3" title="tweet"></textarea>
-    <input type="submit" id="js-sendtweet">
+<div class="img img-circle img-thumbnail right">
+    <img src="https://octodex.github.com/images/octocat-de-los-muertos.jpg" width="500" height="500">
 </div>
-
-<div id="js-tweets" class="col-lg-6 col-lg-offset-3">
-
-</div>
-
 </#macro>
 
-<@main title="Главная" customScripts=["resources/js/tweet.js"]/>
+
+<@main title="Главная"/>

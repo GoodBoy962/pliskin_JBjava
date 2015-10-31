@@ -16,6 +16,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Column(unique = true)
     private String username;
 
     private String password;
@@ -24,6 +25,7 @@ public class User {
     private UserRole role;
 
     @Email(regexp = ".+@.+")
+    @Column(unique = true)
     private String email;
 
     public User() {

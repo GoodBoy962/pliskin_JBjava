@@ -5,7 +5,7 @@ import com.pliskin.form.UserRegistrationForm;
 
 public interface UserService {
 
-    void saveNewUser(UserRegistrationForm form);
+    boolean saveNewUser(UserRegistrationForm form);
 
     void securedMethod();
 

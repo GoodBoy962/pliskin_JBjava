@@ -24,10 +24,12 @@
             <@sf.input path="repassword" id="repassword" cssClass="form-control" placeholder="Повторите пароль"/>
             <@sf.errors path="repassword"/>
         </div>
+        <#if error_registration??>
+        <div class="alert alert-danger" role="alert">${error_registration}</div>
+        </#if>
         <button type="submit" class="btn btn-default">Submit</button>
     </@sf.form>
 </div>
-
 </#macro>
 <@main title="Регистрация"/>
 

@@ -5,7 +5,7 @@
 </@security.authorize>
 
 <header>
-    <div class="col-lg-3 col-lg-offset-9 userside">
+    <div class="col-lg-3 col-lg-offset-7 userside">
     <#if username??>
         <p>${username} <a href="/logout">Выйти</a> </p>
     <#else>

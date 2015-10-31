@@ -10,14 +10,19 @@ public class UserRegistrationFormToUserTransformer {
 
     static BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
+
     public static User transform(UserRegistrationForm form) {
-        if (form == null) {
-            return null;
+        if (UserRegistrationValidator.registrationDataCorrectness(form)) {
+            if (form == null) {
+                return null;
+            }
+            User user = new User();
+            user.setUsername(form.getUsername());
+            user.setRole(UserRole.ROLE_USER);
+            user.setPassword(encoder.encode(form.getPassword()));
+            user.setEmail(form.getEmail());
+            return user;
         }
-        User user = new User();
-        user.setUsername(form.getUsername());
-        user.setRole(UserRole.ROLE_USER);
-        user.setPassword(encoder.encode(form.getPassword()));
-        return user;
+            return null;
     }
 }

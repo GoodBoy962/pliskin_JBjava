@@ -1,9 +1,17 @@
+body{
+    display: table;
+    width: 100%;
+    height: 1000%;
+    min-height: 100%;
+    -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+    box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+}
 header {
-    background-color: #985f0d;
+    background-color: #111111;
     color: darkseagreen;
     height: 50px;
     width: 100%;
-    padding-top: 15px;
+    padding-top: 10px;
     position: absolute;
     top: 0;
 }
@@ -19,4 +27,13 @@ header .userside {
 
 .content {
     margin-top: 70px;
+}
+
+.site-wrapper {
+    display: table;
+    width: 100%;
+    height: 1000%;
+    min-height: 100%;
+    -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+    box-shadow: inset 0 0 100px rgba(0,0,0,.5);
 }

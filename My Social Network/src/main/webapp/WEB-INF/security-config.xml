@@ -8,14 +8,17 @@
     <security:http auto-config="true" use-expressions="true" access-denied-page="/">
         <security:intercept-url pattern="/login" access="isAnonymous()"/>
         <security:intercept-url pattern="/registration" access="isAnonymous()"/>
+        <security:intercept-url pattern="/profile" access="hasRole('ROLE_USER')"/>
         <security:intercept-url pattern="/resources/**" access="permitAll()"/>
-        <security:intercept-url pattern="/" access="hasRole('ROLE_USER')"/>
+        <security:intercept-url pattern="/profile/**" access="hasRole('ROLE_USER')"/>
         <security:form-login
                 login-page="/login"
                 login-processing-url="/login/process"
                 password-parameter="password"
                 username-parameter="username"
-                authentication-failure-url="/login?error=true"/>
+                authentication-failure-url="/login?error=true"
+                default-target-url="/profile"
+                always-use-default-target="true"/>
         <security:logout logout-url="/logout" logout-success-url="/"/>
     </security:http>
 
