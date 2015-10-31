@@ -17,9 +17,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by aleksandrpliskin on 29.10.15.
- */
 public class AuthProviderImpl implements AuthenticationProvider {
 
     @Qualifier("userRepository")

@@ -11,6 +11,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * Created by aleksandrpliskin on 29.10.15.
@@ -39,6 +40,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void securedMethod() {
         //FIXME
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 
 

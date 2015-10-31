@@ -4,8 +4,10 @@ import com.pliskin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.regex.Pattern;
 
@@ -25,9 +27,12 @@ public class UserController {
         return "profile";
     }
 
-    @RequestMapping(value = "/profile?.+")
-    public String getOtherUserPage(Model model) {
-
-        return "profile";
+    @RequestMapping(value = "/friend/{username}")
+    public String getOtherProfilePage(Model model, @PathVariable("username") String username) {
+        System.out.println(username);
+        model.addAttribute("username", username);
+        return "friend";
     }
+
+
 }

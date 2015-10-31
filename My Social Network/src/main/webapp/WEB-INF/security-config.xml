@@ -6,6 +6,7 @@
 
 
     <security:http auto-config="true" use-expressions="true" access-denied-page="/">
+        <security:intercept-url pattern="friend/**" access="hasRole('ROLE_USER')"/>
         <security:intercept-url pattern="/login" access="isAnonymous()"/>
         <security:intercept-url pattern="/registration" access="isAnonymous()"/>
         <security:intercept-url pattern="/profile" access="hasRole('ROLE_USER')"/>

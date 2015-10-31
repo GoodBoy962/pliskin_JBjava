@@ -1,12 +1,12 @@
 $(document).ready(function () {
-    updateTweets();
+    updatePosts();
 
     $("#js-sendpost").on("click", function () {
-        sendTweet()
+        sendPost()
     });
 });
 
-function sendTweet() {
+function sendPost() {
     $input = $("#js-post-text");
     var text = $input.val();
     if (text.length == 0) {
@@ -19,12 +19,12 @@ function sendTweet() {
             text: text
         },
         success: function () {
-            updateTweets();
+            updatePosts();
         }
     })
 }
 
-function updateTweets() {
+function updatePosts() {
     $.ajax({
         url: "profile/post/getAll",
         type: "GET",
