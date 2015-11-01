@@ -5,6 +5,5 @@
 <p>Date: ${post.date}</p>
 <p>Time: ${post.time}</p>
 <#--</#if>-->
-<a><p>Удалить пост</p></a>
 <hr>
 </#list>

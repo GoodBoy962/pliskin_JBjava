@@ -43,10 +43,14 @@ public class PostServiceImpl implements PostService {
     public void savePost(User user, String friend, String text) {
         Post post = new Post();
         User u = userRepository.getOne(user.getId());
-        post.setUser(u);
+//        post.setUser(u);
         System.out.println(friend);
         User userPage = userRepository.getOne(userRepository.findOneByUsername(friend).getId());
-        post.setUserPage(userPage);
+        User user1 = userRepository.findOneByUsername(user.getUsername());
+        User user2 = userRepository.findOneByUsername(friend);
+//        post.setUserPage(userPage);
+        post.setUser(user1);
+        post.setUserPage(user2);
         post.setText(text);
         post.setDate(new java.sql.Date((new java.util.Date()).getTime()));
         post.setTime(new java.sql.Time((new java.util.Date()).getTime()));

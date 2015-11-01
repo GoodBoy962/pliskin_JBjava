@@ -30,13 +30,13 @@ public class PostController {
 
     @RequestMapping("profile/post/add")
     @ResponseStatus(HttpStatus.OK)
-    public void addTweet(@RequestParam("text") String text) {
+    public void addPost(@RequestParam("text") String text) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         postService.savePost(user, text);
     }
 
     @RequestMapping("profile/post/getAll")
-    public String getAllTweetsPage(Model model) {
+    public String getAllPostsPage(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Post> posts = postService.getAll(user);
         model.addAttribute("posts", posts);
@@ -54,7 +54,7 @@ public class PostController {
     }
 
     @RequestMapping("friend/friend/post/getAll")
-    public String getAllTweetsPage(Model model, String friend) {
+    public String getAllPostsPage(Model model, String friend) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Post> posts = postService.getAll(friend);
         model.addAttribute("posts", posts);
