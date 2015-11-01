@@ -13,10 +13,14 @@ public interface PostService {
 
     void savePost(User user, String text);
 
+    void savePost(User user, String friend, String text);
+
     void deletePost(Post post);
 
     void changePost(Post post);
 
     List<Post> getAll(User user);
+
+    List<Post> getAll(String friend);
 
 }

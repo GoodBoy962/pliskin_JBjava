@@ -7,7 +7,7 @@
 <header>
     <div class="col-lg-3 col-lg-offset-7 userside">
     <#if username??>
-        <p>${username} <a href="/logout">Выйти</a> </p>
+        <a href="/profile"><p>${username}</a> <a href="/logout">Выйти</a> </p>
     <#else>
         <p><a href="/registration">Зарегистрироваться</a> или <a href="/login">Войти</a></p>
     </#if>

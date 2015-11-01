@@ -37,7 +37,7 @@ public class AuthController {
     public String registerUser(@ModelAttribute("userform") @Valid UserRegistrationForm form, Model model, BindingResult result) {
         //System.out.println(form.getEmail());
         if (result.hasErrors()) {
-            System.out.println("here");
+            //System.out.println("here");
             return "registration";
         } else {
             userService.saveNewUser(form);

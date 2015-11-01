@@ -27,12 +27,5 @@ public class UserController {
         return "profile";
     }
 
-    @RequestMapping(value = "/friend/{username}")
-    public String getOtherProfilePage(Model model, @PathVariable("username") String username) {
-        System.out.println(username);
-        model.addAttribute("username", username);
-        return "friend";
-    }
-
 
 }

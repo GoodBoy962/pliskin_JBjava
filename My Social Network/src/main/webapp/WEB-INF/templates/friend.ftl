@@ -4,7 +4,7 @@
 <div class="container">
 
     <div class="jumbotron">
-        <h1>${username}</h1>
+        <h1 id="friend">${friend}</h1>
     </div>
 
     <div class="col-lg-6 col-lg-offset-3">
@@ -17,4 +17,4 @@
     </div>
 
 </#macro>
-<@main title="Friend" customScripts=["resources/js/post.js"]/>
+<@main title="Friend" customScripts=["resources/js/post-friends.js"]/>
