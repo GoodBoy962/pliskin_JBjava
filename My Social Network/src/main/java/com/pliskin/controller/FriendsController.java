@@ -43,15 +43,14 @@ public class FriendsController {
 //        users1 = users.subList(0, users.indexOf((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
 //        users2 = users.subList(users.indexOf((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()), users.size());
 //        users1.addAll(users2);
+        model.addAttribute("user", ((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername());
         model.addAttribute("users", users);
         return "all-user";
     }
 
     @RequestMapping(value = "/friend/{username}", method = RequestMethod.GET)
     public String getOtherProfilePage(Model model, @PathVariable("username") String friend) {
-        //System.out.println(friend);
         model.addAttribute("friend", friend);
         return "friend";
     }
-
 }
