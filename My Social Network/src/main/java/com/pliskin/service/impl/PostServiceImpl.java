@@ -44,8 +44,9 @@ public class PostServiceImpl implements PostService {
         Post post = new Post();
         User u = userRepository.getOne(user.getId());
         post.setUser(u);
-        u = userRepository.findOneByUsername(friend);
-        post.setUserPage(u);
+        System.out.println(friend);
+        User userPage = userRepository.getOne(userRepository.findOneByUsername(friend).getId());
+        post.setUserPage(userPage);
         post.setText(text);
         post.setDate(new java.sql.Date((new java.util.Date()).getTime()));
         post.setTime(new java.sql.Time((new java.util.Date()).getTime()));
@@ -57,10 +58,6 @@ public class PostServiceImpl implements PostService {
 
     }
 
-    @Override
-    public void changePost(Post post) {
-
-    }
 
     @Override
     public List<Post> getAll(User user) {
@@ -69,6 +66,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<Post> getAll(String friend) {
-        return postRepository.findByUserPage(userRepository.findOneByUsername(friend));
+        User userPage = userRepository.findOneByUsername(friend);
+        return postRepository.findByUserPage(userPage);
     }
 }

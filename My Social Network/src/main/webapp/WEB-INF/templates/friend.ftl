@@ -17,4 +17,4 @@
     </div>
 
 </#macro>
-<@main title="Friend" customScripts=["resources/js/post-friends.js"]/>
+<@main title="Friend" customScripts=["/resources/js/post-friends.js"]/>

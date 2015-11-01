@@ -11,4 +11,4 @@
 
 
 </#macro>
-<@main title="Friends" customScripts=["resources/js/post.js"]/>
+<@main title="Friends"/>

@@ -9,3 +9,4 @@ lib/
 .idea
 idea/
 .DS_Store
+**.idea/

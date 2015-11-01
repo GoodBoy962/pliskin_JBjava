@@ -17,8 +17,6 @@ public interface PostService {
 
     void deletePost(Post post);
 
-    void changePost(Post post);
-
     List<Post> getAll(User user);
 
     List<Post> getAll(String friend);

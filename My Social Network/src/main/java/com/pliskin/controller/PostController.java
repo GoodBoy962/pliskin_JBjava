@@ -40,17 +40,21 @@ public class PostController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Post> posts = postService.getAll(user);
         model.addAttribute("posts", posts);
+//        for (Post post: posts) {
+//            System.out.println(post.getUser().getUsername());
+//        }
         return "postsList";
     }
 
-    @RequestMapping(value = "/friend/{username}/post/add")
-    public void addPostOnOtherUserPage(Model model, @PathVariable("username") String friend, String text) {
+    @RequestMapping(value = "friend/friend/post/add")
+    @ResponseStatus(HttpStatus.OK)
+    public void addPostOnOtherUserPage(Model model, String friend, String text) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         postService.savePost(user, friend, text);
     }
 
-    @RequestMapping("/friend/{username}/post/getAll")
-    public String getAllTweetsPage(Model model, @PathVariable("username") String friend) {
+    @RequestMapping("friend/friend/post/getAll")
+    public String getAllTweetsPage(Model model, String friend) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Post> posts = postService.getAll(friend);
         model.addAttribute("posts", posts);
