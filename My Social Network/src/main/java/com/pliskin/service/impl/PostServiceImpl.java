@@ -40,21 +40,27 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    @Transactional
     public void savePost(User user, String friend, String text) {
         Post post = new Post();
-        User u = userRepository.getOne(user.getId());
-//        post.setUser(u);
+        //User u = userRepository.findOne(user.getId());
+        //post.setUser(u);
         System.out.println(friend);
-        User userPage = userRepository.getOne(userRepository.findOneByUsername(friend).getId());
+        //User userPage = userRepository.getOne(userRep1ository.findOneByUsername(friend).getId());
+        User ur = userRepository.findUserByUserName(friend);
         User user1 = userRepository.findOneByUsername(user.getUsername());
-        User user2 = userRepository.findOneByUsername(friend);
-//        post.setUserPage(userPage);
+        //User user2 = userRepository.findOneByUsername(friend);
+        post.setUserPage(ur);
         post.setUser(user1);
-        post.setUserPage(user2);
+        //post.setUserPage(user2);
+        //переделал так, потому что не сохраняло, когда делал первым способом, который закоменчен
+        //если изменить, тоже ошибка, не мойму какая
         post.setText(text);
         post.setDate(new java.sql.Date((new java.util.Date()).getTime()));
         post.setTime(new java.sql.Time((new java.util.Date()).getTime()));
         postRepository.save(post);
+        // а что не так?
+        //сэйв не сработает
     }
 
     @Override
