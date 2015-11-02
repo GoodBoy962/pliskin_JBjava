@@ -1,7 +1,9 @@
 package com.pliskin.controller;
 
 import com.pliskin.form.UserRegistrationForm;
+import com.pliskin.repository.UserRepository;
 import com.pliskin.service.UserService;
+import com.pliskin.util.UserRegistrationValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,9 @@ public class AuthController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    UserRepository userRepository;
+
     @RequestMapping(value = "/login")
     public String getLoginPage(@RequestParam(value = "error", required = false) Boolean error, Model model) {
         if (Boolean.TRUE.equals(error)) {
@@ -34,8 +39,19 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registerUser(@ModelAttribute("userform") @Valid UserRegistrationForm form, Model model, BindingResult result) {
+    public String registerUser(@ModelAttribute("userform") @Valid UserRegistrationForm form, BindingResult result, Model model) {
+        //UserRegistrationValidator userRegistrationValidator = new UserRegistrationValidator();
+        //userRegistrationValidator.validate(form, result);
         if (result.hasErrors()) {
+            return "registration";
+        } else if (userRepository.findOneByUsername(form.getUsername()) != null) {
+            model.addAttribute("validatorError", "Такой Логин уже существует");
+            return "registration";
+        } else if (userRepository.findOneByEmail((form.getEmail())) != null) {
+            model.addAttribute("validatorError", "Такой email уже существует");
+            return "registration";
+        } else if (!form.getPassword().equals(form.getRepassword())) {
+            model.addAttribute("validatorError", "Пароль не подтвержден");
             return "registration";
         } else {
             userService.saveNewUser(form);

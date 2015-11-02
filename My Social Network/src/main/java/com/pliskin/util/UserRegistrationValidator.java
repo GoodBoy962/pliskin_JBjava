@@ -29,12 +29,12 @@ public class UserRegistrationValidator implements Validator {
         boolean bool2 = false;
 
         try {
-            userRepository.findOneByUsername(form.getUsername());
+            System.out.println(userRepository.findOneByUsername(form.getUsername()));
         } catch (NullPointerException e) {
             bool1 = true;
         }
         try {
-            userRepository.findOneByEmail(form.getEmail());
+            System.out.println(userRepository.findOneByEmail(form.getEmail()));
         } catch (NullPointerException e) {
             bool2 = true;
         }
@@ -49,7 +49,7 @@ public class UserRegistrationValidator implements Validator {
             errors.rejectValue("email", "невалидный e-mail");
         }
         if (form.getPassword() != form.getRepassword()) {
-            errors.rejectValue("repassword", "ебать ты лох");
+            errors.rejectValue("repassword", "confirm your password");
         }
         if (form.getPassword().length() < 6 && form.getPassword().length() > 32) {
             errors.rejectValue("password", "невалидный пароль");

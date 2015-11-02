@@ -17,9 +17,10 @@ public class UserRegistrationForm {
     @Size(min = 6, max = 24, message = "Пароль неверной длины")
     private String password;
 
+    @Size(min = 6, max = 24, message = "Пароль неверной длины")
     private String repassword;
 
-    @Email()
+    @Email(regexp = ".+@.+")
     @NotEmpty(message = "Невалидный email")
     private String email;
 

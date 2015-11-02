@@ -24,6 +24,13 @@ public class FriendsController {
 
     @RequestMapping(value = "/profile/all_users")
     public String getAllUsers(Model model) {
+        User principal;
+        try {
+            principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        } catch (Exception e) {
+            principal = null;
+        }
+        model.addAttribute("principal", principal);
         List<User> users = userService.findAll();
         model.addAttribute("users", users);
         return "all-user";
