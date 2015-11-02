@@ -2,7 +2,6 @@ package com.pliskin.service;
 
 import com.pliskin.model.Post;
 import com.pliskin.model.User;
-import javafx.geometry.Pos;
 
 import java.util.List;
 

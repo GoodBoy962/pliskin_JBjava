@@ -16,6 +16,7 @@ import java.util.List;
 /**
  * Created by aleksandrpliskin on 29.10.15.
  */
+@Transactional
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -30,8 +31,7 @@ public class UserServiceImpl implements UserService {
         if (user != null) {
             userRepository.save(user);
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
     @Secured("hasRole('ROLE_ADMIN')")
     @Override
     public void securedMethod() {
-        //FIXME
+
     }
 
     @Override

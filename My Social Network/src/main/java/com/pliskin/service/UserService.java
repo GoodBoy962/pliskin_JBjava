@@ -1,8 +1,7 @@
 package com.pliskin.service;
 
-import com.pliskin.model.User;
-import org.springframework.stereotype.Service;
 import com.pliskin.form.UserRegistrationForm;
+import com.pliskin.model.User;
 
 import java.util.List;
 

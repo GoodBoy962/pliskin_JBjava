@@ -13,6 +13,7 @@ import javax.transaction.Transactional;
 import java.sql.Date;
 import java.util.List;
 
+@Transactional
 @Service
 public class PostServiceImpl implements PostService {
 
@@ -34,7 +35,6 @@ public class PostServiceImpl implements PostService {
         post.setText(text);
         post.setDate(new java.sql.Date((new java.util.Date()).getTime()));
         post.setTime(new java.sql.Time((new java.util.Date()).getTime()));
-        System.out.println(post.getText() + "   " + post.getUser().getUsername() + "   " + post.getTime() + "   " + post.getDate() + "   " + post.getUserPage().getUsername());
         postRepository.save(post);
 
     }
@@ -43,24 +43,14 @@ public class PostServiceImpl implements PostService {
     @Transactional
     public void savePost(User user, String friend, String text) {
         Post post = new Post();
-        //User u = userRepository.findOne(user.getId());
-        //post.setUser(u);
-        System.out.println(friend);
-        //User userPage = userRepository.getOne(userRep1ository.findOneByUsername(friend).getId());
-        User ur = userRepository.findUserByUserName(friend);
-        User user1 = userRepository.findOneByUsername(user.getUsername());
-        //User user2 = userRepository.findOneByUsername(friend);
-        post.setUserPage(ur);
-        post.setUser(user1);
-        //post.setUserPage(user2);
-        //переделал так, потому что не сохраняло, когда делал первым способом, который закоменчен
-        //если изменить, тоже ошибка, не мойму какая
+        User userPage = userRepository.findUserByUserName(friend);
+        User userAuthor = userRepository.findOneByUsername(user.getUsername());
+        post.setUserPage(userPage);
+        post.setUser(userAuthor);
         post.setText(text);
         post.setDate(new java.sql.Date((new java.util.Date()).getTime()));
         post.setTime(new java.sql.Time((new java.util.Date()).getTime()));
         postRepository.save(post);
-        // а что не так?
-        //сэйв не сработает
     }
 
     @Override

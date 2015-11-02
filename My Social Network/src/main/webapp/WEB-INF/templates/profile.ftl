@@ -16,7 +16,5 @@
 
     </div>
 
-    <a href="/profile/all_users">Другие юзеры</a>
-
 </#macro>
 <@main title="Profile" customScripts=["resources/js/post.js"]/>

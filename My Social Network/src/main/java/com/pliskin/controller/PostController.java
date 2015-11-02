@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -40,20 +39,17 @@ public class PostController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Post> posts = postService.getAll(user);
         model.addAttribute("posts", posts);
-//        for (Post post: posts) {
-//            System.out.println(post.getUser().getUsername());
-//        }
         return "postsList";
     }
 
-    @RequestMapping(value = "friend/friend/post/add")
+    @RequestMapping(value = "friend/post/add")
     @ResponseStatus(HttpStatus.OK)
-    public void addPostOnOtherUserPage(Model model, String friend, String text) {
+    public void addPostOnOtherUserPage(String friend, String text) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         postService.savePost(user, friend, text);
     }
 
-    @RequestMapping("friend/friend/post/getAll")
+    @RequestMapping("friend/post/getAll")
     public String getAllPostsPage(Model model, String friend) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Post> posts = postService.getAll(friend);

@@ -16,7 +16,7 @@ function sendPost() {
         return;
     }
     $.ajax({
-        url: "friend/post/add",
+        url: "post/add",
         type: "POST",
         data: {
             text: text,
@@ -32,7 +32,7 @@ function updatePosts() {
     $friend = $("#friend").first();
     var friend = $friend.text();
     $.ajax({
-        url: "friend/post/getAll",
+        url: "post/getAll",
         type: "GET",
         dataType: "html",
         data: {
