@@ -28,7 +28,8 @@ public class PostServiceImpl implements PostService {
     @Override
     public void savePost(User user, String text) {
         Post post = new Post();
-        User u = userRepository.getOne(user.getId());
+        //User u = userRepository.getOne(user.getId());
+        User u = userRepository.findByUsername(user.getUsername());
         post.setUser(u);
         post.setUserPage(u);
         post.setText(text);
@@ -42,8 +43,8 @@ public class PostServiceImpl implements PostService {
     @Transactional
     public void savePost(User user, String friend, String text) {
         Post post = new Post();
-        User userPage = userRepository.findUserByUserName(friend);
-        User userAuthor = userRepository.findOneByUsername(user.getUsername());
+        User userPage = userRepository.findByUsername(friend);
+        User userAuthor = userRepository.findByUsername(user.getUsername());
         post.setUserPage(userPage);
         post.setUser(userAuthor);
         post.setText(text);
