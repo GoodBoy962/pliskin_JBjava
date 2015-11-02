@@ -1,10 +1,10 @@
 package com.pliskin.util;
 
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.pliskin.form.UserRegistrationForm;
 import com.pliskin.model.User;
 import com.pliskin.model.enums.UserRole;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class UserRegistrationFormToUserTransformer {
 
@@ -23,6 +23,6 @@ public class UserRegistrationFormToUserTransformer {
             user.setEmail(form.getEmail());
             return user;
         }
-            return null;
+        return null;
     }
 }

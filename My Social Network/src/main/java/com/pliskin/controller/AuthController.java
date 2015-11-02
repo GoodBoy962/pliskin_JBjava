@@ -3,7 +3,6 @@ package com.pliskin.controller;
 import com.pliskin.form.UserRegistrationForm;
 import com.pliskin.repository.UserRepository;
 import com.pliskin.service.UserService;
-import com.pliskin.util.UserRegistrationValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,8 +39,6 @@ public class AuthController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registerUser(@ModelAttribute("userform") @Valid UserRegistrationForm form, BindingResult result, Model model) {
-        //UserRegistrationValidator userRegistrationValidator = new UserRegistrationValidator();
-        //userRegistrationValidator.validate(form, result);
         if (result.hasErrors()) {
             return "registration";
         } else if (userRepository.findOneByUsername(form.getUsername()) != null) {

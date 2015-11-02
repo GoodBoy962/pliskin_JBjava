@@ -1,6 +1,5 @@
 package com.pliskin.model;
 
-import javax.jws.soap.SOAPBinding;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
