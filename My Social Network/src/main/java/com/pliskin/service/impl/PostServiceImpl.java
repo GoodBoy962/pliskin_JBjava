@@ -18,11 +18,11 @@ public class PostServiceImpl implements PostService {
 
     @Qualifier("userRepository")
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Qualifier("postRepository")
     @Autowired
-    PostRepository postRepository;
+    private PostRepository postRepository;
 
     @Transactional
     @Override
@@ -55,7 +55,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void deletePost(Post post) {
-
+        postRepository.delete(post);
     }
 
 

@@ -21,9 +21,9 @@ public class AuthProviderImpl implements AuthenticationProvider {
 
     @Qualifier("userRepository")
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
-    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {

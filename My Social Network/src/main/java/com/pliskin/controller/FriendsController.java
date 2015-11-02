@@ -17,10 +17,10 @@ import java.util.List;
 public class FriendsController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    PostService postService;
+    private PostService postService;
 
     @RequestMapping(value = "/profile/all_users")
     public String getAllUsers(Model model) {

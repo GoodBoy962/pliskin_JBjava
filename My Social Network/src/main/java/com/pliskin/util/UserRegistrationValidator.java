@@ -9,7 +9,7 @@ import org.springframework.validation.Validator;
 public class UserRegistrationValidator implements Validator {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     public static boolean registrationDataCorrectness(UserRegistrationForm form) {
 

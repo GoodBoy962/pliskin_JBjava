@@ -34,3 +34,17 @@ function updatePosts() {
         }
     })
 }
+
+function deletePost() {
+    var post = $("#post").val();
+    $.ajax({
+        url: "profile/post/delete",
+        type: "GET",
+        data: {
+            post: post
+        },
+        success: function () {
+            updatePosts();
+        }
+    })
+}

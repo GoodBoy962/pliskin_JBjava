@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @RequestMapping(value = "/profile")
     public String getProfilePage(Model model) {

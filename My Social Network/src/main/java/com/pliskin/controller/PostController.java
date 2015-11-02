@@ -22,10 +22,10 @@ import java.util.List;
 public class PostController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    PostService postService;
+    private PostService postService;
 
     @RequestMapping("profile/post/add")
     @ResponseStatus(HttpStatus.OK)
@@ -34,10 +34,23 @@ public class PostController {
         postService.savePost(user, text);
     }
 
+    @RequestMapping("profile/post/delete")
+    @ResponseStatus(HttpStatus.OK)
+    public void deletePost(@RequestParam("post") Post post) {
+        postService.deletePost(post);
+    }
+
     @RequestMapping("profile/post/getAll")
     public String getAllPostsPage(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Post> posts = postService.getAll(user);
+        User principal;
+        try {
+            principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        } catch (Exception e) {
+            principal = null;
+        }
+        model.addAttribute("principal", principal);
         model.addAttribute("posts", posts);
         return "postsList";
     }
@@ -49,10 +62,23 @@ public class PostController {
         postService.savePost(user, friend, text);
     }
 
+    @RequestMapping("friend/friend/post/delete")
+    @ResponseStatus(HttpStatus.OK)
+    public void deletePostOnOtherUserPage(@RequestParam("post") Post post) {
+        postService.deletePost(post);
+    }
+
     @RequestMapping("friend/friend/post/getAll")
     public String getAllPostsPage(Model model, String friend) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Post> posts = postService.getAll(friend);
+        User principal;
+        try {
+            principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        } catch (Exception e) {
+            principal = null;
+        }
+        model.addAttribute("principal", principal);
         model.addAttribute("posts", posts);
         return "postsList";
     }

@@ -43,3 +43,17 @@ function updatePosts() {
         }
     })
 }
+
+function deletePost() {
+    var post = $("#post").val();
+    $.ajax({
+        url: "friend/post/delete",
+        type: "GET",
+        data: {
+            post: post
+        },
+        success: function () {
+            updatePosts();
+        }
+    })
+}

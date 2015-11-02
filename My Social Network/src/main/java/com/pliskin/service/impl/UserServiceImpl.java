@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
     @Qualifier("userRepository")
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Override
     public boolean saveNewUser(UserRegistrationForm form) {

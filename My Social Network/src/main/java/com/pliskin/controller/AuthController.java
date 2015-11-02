@@ -4,6 +4,7 @@ import com.pliskin.form.UserRegistrationForm;
 import com.pliskin.repository.UserRepository;
 import com.pliskin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,10 +19,11 @@ import javax.validation.Valid;
 public class AuthController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
+    @Qualifier("userRepository")
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @RequestMapping(value = "/login")
     public String getLoginPage(@RequestParam(value = "error", required = false) Boolean error, Model model) {
