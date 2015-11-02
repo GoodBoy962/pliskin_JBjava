@@ -31,7 +31,13 @@ public class FriendsController {
 
     @RequestMapping(value = "/friend/{username}", method = RequestMethod.GET)
     public String getOtherProfilePage(Model model, @PathVariable("username") String friend) {
-        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User principal;
+        try {
+            principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        } catch (Exception e) {
+            principal = null;
+        }
+        model.addAttribute("principal", principal);
         model.addAttribute("friend", friend);
         return "friend";
     }

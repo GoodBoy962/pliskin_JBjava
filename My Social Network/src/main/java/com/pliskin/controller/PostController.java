@@ -42,14 +42,14 @@ public class PostController {
         return "postsList";
     }
 
-    @RequestMapping(value = "friend/post/add")
+    @RequestMapping(value = "friend/friend/post/add")
     @ResponseStatus(HttpStatus.OK)
-    public void addPostOnOtherUserPage(String friend, String text) {
+    public void addPostOnOtherUserPage(Model model, String friend, String text) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         postService.savePost(user, friend, text);
     }
 
-    @RequestMapping("friend/post/getAll")
+    @RequestMapping("friend/friend/post/getAll")
     public String getAllPostsPage(Model model, String friend) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Post> posts = postService.getAll(friend);
