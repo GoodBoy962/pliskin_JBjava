@@ -55,20 +55,20 @@ public class PostController {
         return "postsList";
     }
 
-    @RequestMapping(value = "friend/friend/post/add")
+    @RequestMapping(value = "friend/post/add")
     @ResponseStatus(HttpStatus.OK)
     public void addPostOnOtherUserPage(Model model, String friend, String text) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         postService.savePost(user, friend, text);
     }
 
-    @RequestMapping("friend/friend/post/delete")
+    @RequestMapping("friend/post/delete")
     @ResponseStatus(HttpStatus.OK)
     public void deletePostOnOtherUserPage(@RequestParam("post") Post post) {
         postService.deletePost(post);
     }
 
-    @RequestMapping("friend/friend/post/getAll")
+    @RequestMapping("friend/post/getAll")
     public String getAllPostsPage(Model model, String friend) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Post> posts = postService.getAll(friend);
