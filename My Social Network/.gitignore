@@ -1,3 +1,5 @@
+# Created by .ignore support plugin (hsz.mobi)
+.iml
 .idea/
 target/
 out/
@@ -9,4 +11,3 @@ lib/
 .idea
 idea/
 .DS_Store
-**.idea/
