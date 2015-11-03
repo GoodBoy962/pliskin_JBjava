@@ -28,5 +28,10 @@
 </div>
 
 </body>
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">Alexander Pliskin Corporation</p>
+    </div>
+</footer>
 </html>
 </#macro>

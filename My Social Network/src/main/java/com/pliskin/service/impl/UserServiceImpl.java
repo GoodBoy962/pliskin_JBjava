@@ -26,7 +26,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean saveNewUser(UserRegistrationForm form) {
-        System.out.println(form.getUsername());
         User user = UserRegistrationFormToUserTransformer.transform(form);
         if (user != null) {
             userRepository.save(user);
