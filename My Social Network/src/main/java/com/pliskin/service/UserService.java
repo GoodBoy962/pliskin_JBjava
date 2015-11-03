@@ -13,4 +13,6 @@ public interface UserService {
 
     List<User> findAll();
 
+    boolean containsUser(String username);
+
 }
