@@ -18,29 +18,8 @@ public class ServiceAspect {
     }
 
     public void exceptionLog(JoinPoint joinPoint) throws Throwable {
-//        Object result = joinPoint.proceed();
-        System.out.println("Exception: " + joinPoint.getSignature().getName() + " :"+Arrays.toString(joinPoint.getArgs()));
-//        return result;
+        System.out.println("Exception: " + joinPoint.getSignature().getName() + " :" + Arrays.toString(joinPoint.getArgs()));
     }
 
-    /*
-
-    public Object retry(ProceedingJoinPoint joinPoint) throws Throwable {
-        Class clazz = joinPoint.getTarget().getClass();
-        Method method = clazz.getMethod(joinPoint.getSignature().getName());
-        TimeAnnotation retryIfException = method.getAnnotation(TimeAnnotation.class);
-        int count = retryIfException.value();
-        System.out.println("OK BOSS "+count);
-        while (--count>0){
-            try {
-                return joinPoint.proceed();
-            } catch (Throwable throwable) {
-                System.out.println("Ошибка, еще "+(count)+" попыток");
-            }
-        }
-        return joinPoint.proceed();
-    }
-
-    */
 
 }
