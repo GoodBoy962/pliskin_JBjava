@@ -1,0 +1,57 @@
+package com.pliskin.controller;
+
+import com.pliskin.model.User;
+import com.pliskin.service.PostService;
+import com.pliskin.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.List;
+
+@Controller
+public class FriendsController {
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private PostService postService;
+
+    @RequestMapping(value = "/profile/all_users")
+    public String getAllUsers(Model model) throws Exception {
+        User principal;
+        try {
+            principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        } catch (Exception e) {
+            principal = null;
+        }
+        //заведомо выбрасывает exception
+        postService.throwException(principal);
+        model.addAttribute("principal", principal);
+        List<User> users = userService.findAll();
+        model.addAttribute("users", users);
+        return "all-user";
+    }
+
+    @RequestMapping(value = "/friend/{username}", method = RequestMethod.GET)
+    public String getOtherProfilePage(Model model, @PathVariable("username") String friend) {
+        User principal;
+        try {
+            principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        } catch (Exception e) {
+            principal = null;
+        }
+        if (userService.containsUser(friend)) {
+            model.addAttribute("friend", friend);
+            model.addAttribute("principal", principal);
+            return "friend";
+        } else {
+            return "404";
+        }
+    }
+}
