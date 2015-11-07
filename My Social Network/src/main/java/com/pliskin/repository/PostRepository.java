@@ -11,10 +11,12 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import java.util.List;
 
+@Transactional
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    List<Post> findByUserPage(User user);
+//    @Query(value = "select Post  from Post p where p.userPage = :user order by date, time")
+    List<Post> findByUserPageOrderByDateDescTimeDesc(User user);
 
     Post findOneBy(Long id);
 

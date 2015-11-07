@@ -62,12 +62,12 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<Post> getAll(User user) {
-        return postRepository.findByUserPage(user);
+        return postRepository.findByUserPageOrderByDateDescTimeDesc(user);
     }
 
     @Override
     public List<Post> getAll(String friend) {
         User userPage = userRepository.findOneByUsername(friend);
-        return postRepository.findByUserPage(userPage);
+        return postRepository.findByUserPageOrderByDateDescTimeDesc(userPage);
     }
 }
