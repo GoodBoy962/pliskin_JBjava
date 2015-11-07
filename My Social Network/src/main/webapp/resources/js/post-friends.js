@@ -44,13 +44,13 @@ function updatePosts() {
     })
 }
 
-function deletePost() {
-    var post = $("#post").val();
+function deletePost(postid) {
+    $button = $("#delete-post");
     $.ajax({
-        url: "friend/post/delete",
-        type: "GET",
+        url: "/profile/post/delete",
+        type: "POST",
         data: {
-            post: post
+            id: postid
         },
         success: function () {
             updatePosts();

@@ -14,7 +14,7 @@ public interface PostService {
 
     void savePost(User user, String friend, String text);
 
-    void deletePost(Post post);
+    void deletePost(Long post);
 
     List<Post> getAll(User user);
 

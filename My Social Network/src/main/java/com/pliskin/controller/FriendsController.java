@@ -44,9 +44,9 @@ public class FriendsController {
         } catch (Exception e) {
             principal = null;
         }
+        model.addAttribute("principal", principal);
         if (userService.containsUser(friend)) {
             model.addAttribute("friend", friend);
-            model.addAttribute("principal", principal);
             return "friend";
         } else {
             return "404";

@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -34,10 +35,10 @@ public class PostController {
         postService.savePost(user, text);
     }
 
-    @RequestMapping("profile/post/delete")
+    @RequestMapping(value = "profile/post/delete", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void deletePost(@RequestParam("post") Post post) {
-        postService.deletePost(post);
+    public void deletePost(@RequestParam("id") String id) {
+        postService.deletePost(Long.parseLong(id));
     }
 
     @RequestMapping("profile/post/getAll")
@@ -62,10 +63,9 @@ public class PostController {
         postService.savePost(user, friend, text);
     }
 
-    @RequestMapping("friend/post/delete")
-    @ResponseStatus(HttpStatus.OK)
-    public void deletePostOnOtherUserPage(@RequestParam("post") Post post) {
-        postService.deletePost(post);
+    @RequestMapping(value = "friend/post/delete", method = RequestMethod.POST)
+    public void deletePostOnOtherUserPage(@RequestParam("id") Long id) {
+        postService.deletePost(Long.valueOf(id));
     }
 
     @RequestMapping("friend/post/getAll")
