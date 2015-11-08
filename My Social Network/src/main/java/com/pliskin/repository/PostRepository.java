@@ -15,14 +15,17 @@ import java.util.List;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-//    @Query(value = "select Post  from Post p where p.userPage = :user order by date, time")
     List<Post> findByUserPageOrderByDateDescTimeDesc(User user);
 
-    Post findOneBy(Long id);
+    Post findOne(Long id);
 
     @Transactional
     @Modifying
     @Query(value = "delete from Post p where p.id = :id")
     void delete(@Param("id") Long id);
+
+    @Modifying
+    @Query("UPDATE Post p SET p.text = :text WHERE p.id = :postId")
+    void updatePost(@Param("postId") Long id, @Param("text") String text);
 
 }

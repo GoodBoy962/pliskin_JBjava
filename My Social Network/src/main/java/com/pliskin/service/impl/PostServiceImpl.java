@@ -70,4 +70,19 @@ public class PostServiceImpl implements PostService {
         User userPage = userRepository.findOneByUsername(friend);
         return postRepository.findByUserPageOrderByDateDescTimeDesc(userPage);
     }
+
+    @Override
+    public Post getById(Long id) {
+        return postRepository.findOne(id);
+    }
+
+    @Override
+    public void changePost(Long id, String text) {
+        postRepository.updatePost(id, text);
+    }
+
+    @Override
+    public List<Post> getAll() {
+        return postRepository.findAll();
+    }
 }

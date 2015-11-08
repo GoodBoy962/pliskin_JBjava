@@ -20,4 +20,10 @@ public interface PostService {
 
     List<Post> getAll(String friend);
 
+    Post getById(Long id);
+
+    void changePost(Long id, String text);
+
+    List<Post> getAll();
+
 }

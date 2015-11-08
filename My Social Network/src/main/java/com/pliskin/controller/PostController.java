@@ -9,10 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -83,4 +80,44 @@ public class PostController {
         return "postsList";
     }
 
+    @RequestMapping(value = "profile/post/change/{postId}", method = RequestMethod.GET)
+    public String changePost(Model model, @PathVariable("postId") Long id) {
+        User principal;
+        try {
+            principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        } catch (Exception e) {
+            principal = null;
+        }
+        model.addAttribute("principal", principal);
+        model.addAttribute("post", postService.getById(id));
+        return "change-post";
+    }
+
+    @RequestMapping(value = "profile/post/change/save", method = RequestMethod.GET)
+    public String changePostAndSave(Model model,
+                                    @RequestParam(value = "postId", required = false) String id,
+                                    @RequestParam(value = "postText", required = false) String text) {
+        User principal;
+        try {
+            principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        } catch (Exception e) {
+            principal = null;
+        }
+        postService.changePost(Long.valueOf(id), text);
+        model.addAttribute("principal", principal);
+        return "redirect:/profile";
+    }
+
+    @RequestMapping(value = "/lenta")
+    public String getLenta(Model model) {
+        User principal;
+        try {
+            principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        } catch (Exception e) {
+            principal = null;
+        }
+        model.addAttribute("principal", principal);
+        model.addAttribute("posts", postService.getAll());
+        return "lenta";
+    }
 }
