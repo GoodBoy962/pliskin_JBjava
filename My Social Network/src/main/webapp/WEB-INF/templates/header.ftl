@@ -7,10 +7,12 @@
 <header>
     <div class="col-lg-3 col-lg-offset-7 userside">
     <#if username?? && principal??>
-        <a href="/profile"><p>${username}</a> <a href="/profile/all_users"> Другие юзеры </a><a href="/lenta">
-        Лента </a><a href="/logout">Выйти</a> </p>
+
+        <a href="/profile"><p>${username}</a> <a href="/profile/all_users"> Другие юзеры </a><a href="/lenta">Лента </a><a
+            href="/logout">Выйти</a>
     <#else>
-        <p><a href="/registration">Зарегистрироваться</a> или <a href="/login">Войти</a></p>
+        <div class="col-lg-offset-4"><a href="/lenta">Лента </a></div>
+        <a href="/registration">Зарегистрироваться</a> или <a href="/login">Войти</a>
     </#if>
     </div>
 </header>
