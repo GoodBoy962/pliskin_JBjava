@@ -23,7 +23,9 @@
     <#include "header.ftl"/>
 
     <div class="content">
-        <@m_body/>
+        <div class="container">
+            <@m_body/>
+        </div>
     </div>
 </div>
 

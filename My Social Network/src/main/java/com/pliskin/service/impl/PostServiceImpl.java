@@ -54,19 +54,35 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void deletePost(Post post) {
+    @Transactional
+    public void deletePost(Long post) {
         postRepository.delete(post);
     }
 
 
     @Override
     public List<Post> getAll(User user) {
-        return postRepository.findByUserPage(user);
+        return postRepository.findByUserPageOrderByDateDescTimeDesc(user);
     }
 
     @Override
     public List<Post> getAll(String friend) {
         User userPage = userRepository.findOneByUsername(friend);
-        return postRepository.findByUserPage(userPage);
+        return postRepository.findByUserPageOrderByDateDescTimeDesc(userPage);
+    }
+
+    @Override
+    public Post getById(Long id) {
+        return postRepository.findOne(id);
+    }
+
+    @Override
+    public void changePost(Long id, String text) {
+        postRepository.updatePost(id, text);
+    }
+
+    @Override
+    public List<Post> getAll() {
+        return postRepository.findAll();
     }
 }

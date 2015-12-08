@@ -16,7 +16,7 @@ public class Post {
 
     private String text;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
@@ -24,7 +24,7 @@ public class Post {
 
     private Time time;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_page", nullable = false)
     private User userPage;
 

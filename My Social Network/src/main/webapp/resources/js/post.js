@@ -2,8 +2,12 @@ $(document).ready(function () {
     updatePosts();
 
     $("#js-sendpost").on("click", function () {
-        sendPost()
+        sendPost();
     });
+
+    //$("#js-deletepost").on("click", function() {
+    //    deletePost();
+    //})
 });
 
 function sendPost() {
@@ -13,7 +17,7 @@ function sendPost() {
         return;
     }
     $.ajax({
-        url: "profile/post/add",
+        url: "/profile/post/add",
         type: "POST",
         data: {
             text: text
@@ -26,7 +30,7 @@ function sendPost() {
 
 function updatePosts() {
     $.ajax({
-        url: "profile/post/getAll",
+        url: "/profile/post/getAll",
         type: "GET",
         dataType: "html",
         success: function (data) {
@@ -35,13 +39,13 @@ function updatePosts() {
     })
 }
 
-function deletePost() {
-    var post = $("#post").val();
+function deletePost(postid) {
+    $button = $("#delete-post");
     $.ajax({
-        url: "profile/post/delete",
-        type: "GET",
+        url: "/profile/post/delete",
+        type: "POST",
         data: {
-            post: post
+            id: postid
         },
         success: function () {
             updatePosts();
