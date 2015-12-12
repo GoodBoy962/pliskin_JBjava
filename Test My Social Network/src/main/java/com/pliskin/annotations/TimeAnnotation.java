@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * Created by aleksandrpliskin on 03.11.15.
  */
-@Target(ElementType.METHOD)
+@Target(value = ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface TimeAnnotation {
 }

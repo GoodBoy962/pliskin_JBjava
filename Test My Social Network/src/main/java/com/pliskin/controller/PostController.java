@@ -70,7 +70,7 @@ public class PostController {
 
     @RequestMapping("friend/post/getAll")
     public String getAllPostsPage(Model model, String friend) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Post> posts = postService.getAll(friend);
         User principal;
         try {
