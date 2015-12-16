@@ -16,6 +16,7 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @ComponentScan({"com.pliskin.controller"})
 public class WebConfiguration extends WebMvcConfigurerAdapter {
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
@@ -23,7 +24,6 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 
     @Bean
     public InternalResourceViewResolver viewResolver() {
-
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 //        viewResolver.setViewClass(FreeMarkerConfig.class);
         viewResolver.setViewClass(JstlView.class);
