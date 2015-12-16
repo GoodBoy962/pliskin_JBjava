@@ -1,4 +1,4 @@
 rootProject.name = 'Multi Module Project'
-include 'service'
-include 'com.pliskin.model'
+include 'service-module'
+include 'model-module'
 

@@ -1,4 +1,4 @@
-package main.java.com.pliskin.service;
+package com.pliskin.service;
 
 /**
  * Created by aleksandrpliskin on 16.12.15.
