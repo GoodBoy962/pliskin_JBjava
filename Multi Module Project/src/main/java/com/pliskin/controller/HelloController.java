@@ -2,20 +2,20 @@ package com.pliskin.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import com.pliskin.service.Service;
 import org.springframework.ui.Model;
+import com.pliskin.model.HelloModel;
+import com.pliskin.service.*;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HelloController {
 
-//    @Autwired
-    private Service service = new SomeServiceImpl();
+    private HelloService service = new HelloServiceImpl();
 
     @RequestMapping("/")
-    public String greeting(Model model) {
-        SomeModel model = new SomeModel(service.greeting());
-        model.addAttribute("greeting", model.getSpeech());
+    public String index(Model model) {
+        HelloModel string = new HelloModel();
+        model.addAttribute("greeting", string.getPhrase());
         return "index";
     }
 

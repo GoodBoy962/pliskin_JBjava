@@ -1,17 +1,17 @@
-package main.java.model;
+package com.pliskin.model;
 
 /**
  * Created by aleksandrpliskin on 16.12.15.
  */
-public class Model {
+public class HelloModel {
 
     private String phrase;
 
-    public Model(String phrase) {
+    public HelloModel(String phrase) {
         this.phrase = phrase;
     }
 
-    public Model() {
+    public HelloModel() {
     }
 
     public String getPhrase() {

@@ -1,7 +1,7 @@
 package com.pliskin;
 
-import com.pliskin.configs.RootConfig;
-import com.pliskin.configs.WebConfig;
+import com.pliskin.configs.RootConfiguration;
+import com.pliskin.configs.WebConfiguration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
@@ -10,12 +10,12 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 public class DispatcherServlet extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{RootConfig.class};
+        return new Class[]{RootConfiguration.class};
     }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{WebConfig.class};
+        return new Class[]{WebConfiguration.class};
     }
 
     @Override
