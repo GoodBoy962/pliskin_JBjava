@@ -53,7 +53,6 @@ public class ReflectionTask10 {
             if (modType(method.getModifiers()) != "private") {
                 System.out.println("Имя: " + method.getName());
                 System.out.println("Возвращаемый тип: " + method.getReturnType().getName());
-
                 Class[] paramTypes = method.getParameterTypes();
                 System.out.print("Типы параметров: ");
                 for (Class paramType : paramTypes) {

@@ -14,23 +14,23 @@
     <p>Time: ${post.time}</p>
         <#if principal??>
             <#if post.userPage.username == principal.username>
-            <button type="button" onclick="deletePost(${post.id})" class="btn btn-default btn-sm"><i
-                    class="fa fa-trash-o" style="color:red;"></i>
-                Удалить пост
-            </button>
+            <#--<button type="button" onclick="deletePost(${post.id})" class="btn btn-default btn-sm"><i-->
+                    <#--class="fa fa-trash-o" style="color:red;"></i>-->
+                <#--Удалить пост-->
+            <#--</button>-->
                 <#if post.user.username == principal.username>
                 <a href="/profile/post/change/${post.id}" class="btn btn-default btn-sm">Изменить пост</a>
                 </#if>
             <#else>
-                <#if post.user.username == principal.username>
-                <button type="button" onclick="deletePost(${post.id})" class="btn btn-default btn-sm"><i
-                        class="fa fa-trash-o" style="color:red;"></i>
-                    Удалить пост
-                </button>
-                </#if>
+                <#--<#if post.user.username == principal.username>-->
+                <#--<button type="button" onclick="deletePost(${post.id})" class="btn btn-default btn-sm"><i-->
+                        <#--class="fa fa-trash-o" style="color:red;"></i>-->
+                    <#--Удалить пост-->
+                <#--</button>-->
+                <#--</#if>-->
             </#if>
         </#if>
     <hr>
     </#list>
 </#macro>
-<@main title="Lenta"/>
+<@main title="Lenta" customScripts=["resources/js/post.js"]/>

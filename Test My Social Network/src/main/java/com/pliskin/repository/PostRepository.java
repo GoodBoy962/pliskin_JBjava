@@ -14,4 +14,5 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     Post findOneBy(Long id);
 
+
 }
