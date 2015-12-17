@@ -1,5 +1,6 @@
 package com.pliskin.alex.model;
 
+import com.pliskin.alex.model.enums.Sex;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,7 +12,7 @@ public class UserInfo {
     String surname;
     String thirdName;
     String date;
-    String sex;
+    Sex sex;
 
     public UserInfo() {
 
@@ -22,7 +23,15 @@ public class UserInfo {
         this.surname = surname;
         this.thirdName = thirdName;
         this.date = date;
-        this.sex = sex;
+        this.sex = Sex.valueOf(sex);
+    }
+
+    public void reset() {
+        name = null;
+        surname = null;
+        thirdName = null;
+        date = null;
+        sex = null;
     }
 
     public String getName() {
@@ -30,7 +39,7 @@ public class UserInfo {
     }
 
     public String getSex() {
-        return sex;
+        return sex.toString();
     }
 
     public String getThirdName() {
@@ -50,7 +59,7 @@ public class UserInfo {
     }
 
     public void setSex(String sex) {
-        this.sex = sex;
+        this.sex = Sex.valueOf(sex);
     }
 
     public void setDate(String date) {

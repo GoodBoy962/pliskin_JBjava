@@ -1,6 +1,6 @@
 package com.pliskin.alex.controller;
 
-import com.pliskin.alex.service.impl.UserImpl;
+import com.pliskin.alex.service.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class StartController {
     @Autowired
-    UserImpl user;
+    private User user;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showIndex() {
@@ -32,7 +32,7 @@ public class StartController {
     }
 
     @RequestMapping(value = "table", method = RequestMethod.POST)
-    public String Submit(@RequestParam("name") String name,
+    public String submit(@RequestParam("name") String name,
                          @RequestParam("surname") String surname,
                          @RequestParam("thirdName") String thirdName,
                          @RequestParam("date") String date,
@@ -45,11 +45,7 @@ public class StartController {
 
     @RequestMapping("/logout")
     public String logOut() {
-        user.getUserInfo().setName(null);
-        user.getUserInfo().setSurname(null);
-        user.getUserInfo().setSex(null);
-        user.getUserInfo().setThirdName(null);
-        user.getUserInfo().setDate(null);
+        user.reset();
         return "redirect:/";
     }
 

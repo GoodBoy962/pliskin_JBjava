@@ -20,8 +20,8 @@
     <label> Sex </label>
     <select name="sex">
         <option name="n" type="text"></option>
-        <option name="m" type="text">male/муж</option>
-        <option name="f" typte="text">female/жен</option>
+        <option name="m" type="text">MALE</option>
+        <option name="f" type="text">FEMALE</option>
     </select>
     <input type="submit" value="Submit">
 </form>

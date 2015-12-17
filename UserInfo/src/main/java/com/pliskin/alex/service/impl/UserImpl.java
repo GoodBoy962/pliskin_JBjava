@@ -1,9 +1,8 @@
 package com.pliskin.alex.service.impl;
 
 import com.pliskin.alex.model.UserInfo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import com.pliskin.alex.service.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -26,5 +25,10 @@ public class UserImpl implements User {
         userInfo.setThirdName(thirdName);
         userInfo.setDate(date);
         userInfo.setSex(sex);
+    }
+
+    @Override
+    public void reset() {
+        userInfo.reset();
     }
 }

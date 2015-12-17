@@ -9,4 +9,6 @@ public interface User {
     UserInfo getUserInfo();
 
     void addUserInfo(String name, String surname, String thirdName, String date, String sex);
+
+    void reset();
 }
